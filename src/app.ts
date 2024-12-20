@@ -28,8 +28,8 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/admin', adminRoutes);
 
 const test = (req: Request, res: Response) => {
-  const a = 10;
-  res.send(a);
+
+  res.send('Server is running');
 };
 
 app.get('/', test);
