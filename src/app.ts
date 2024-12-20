@@ -1,5 +1,5 @@
 // Continuing src/app.ts
-import express from 'express';
+import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -26,6 +26,13 @@ connectDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/admin', adminRoutes);
+
+const test = (req: Request, res: Response) => {
+  const a = 10;
+  res.send(a);
+};
+
+app.get('/', test);
 
 // Error Handler
 app.use(errorHandler);
