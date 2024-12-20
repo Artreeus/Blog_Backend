@@ -117,6 +117,165 @@ src/
 - **Run Production Build**:
   ```bash
   npm start
+
+  ```
+- **Post man Collection**:
+  ```bash
+  {
+    "info": {
+        "name": "Blog API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/auth/register",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"securepassword\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/auth/login",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"securepassword\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Blogs",
+            "item": [
+                {
+                    "name": "Create Blog",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/blogs",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"My First Blog\",\n    \"content\": \"This is the content of my first blog post.\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update Blog",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/blogs/:blogId",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Updated Blog Title\",\n    \"content\": \"Updated content for my blog post.\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Blog",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/blogs/:blogId"
+                    }
+                },
+                {
+                    "name": "Get All Blogs",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/blogs?search=technology&sortBy=createdAt&sortOrder=desc&filter=authorId"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Admin",
+            "item": [
+                {
+                    "name": "Block User",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{adminToken}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/admin/users/:userId/block"
+                    }
+                },
+                {
+                    "name": "Admin Delete Blog",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{adminToken}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/admin/blogs/:blogId"
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "token",
+            "value": "your-jwt-token"
+        },
+        {
+            "key": "adminToken",
+            "value": "admin-jwt-token"
+        }
+    ]
+}
   ```
 
 ## Testing
